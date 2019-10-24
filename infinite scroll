@@ -1,0 +1,82 @@
+function displayContents(contents) {
+    
+     document.getElementById("file-input").disabled = true;
+     var text = contents;
+     var sep = text.split('\n');
+     var record = [];
+     var i,j,k,temp=0;
+     var x = 2;
+     for(var i =0 ;i<sep.length;i++){
+         record[i]=sep[i].split(',');
+     }  
+ var table=document.getElementById("table");
+
+ 
+     for(var i=0;i<25;i++){
+              var x = document.createElement("TH");
+              if(i===0)
+                  x.innerHTML='<div contenteditable="false" >'+" "+'</div>';
+              else
+                 x.innerHTML='<div contenteditable="false" >'+i
+                             +'<button onclick="addColoumn('+i+')">Add</button>'
+                             +'<button onclick="deleteColoumn('+i+')">Del</button>'
+                             +'<button onclick="showHide('+i+')">Show/Hide</button>'
+                             +'<button onclick="mergeCol('+i+')">Merge</button>'+'</div>';
+           
+              table.appendChild(x);
+}
+ var z=1,m=1,count;
+ var temp = [];
+ var m=1,count=1;
+ 
+ for(k=100,i=0;k<299;k++,i++){
+     temp[k]=record[i];
+ }
+ 
+ function loadMore(m){
+        
+ for(i=0; i<100 && z<record.length ; i++){
+     var r = document.createElement("TR"); 
+      for(j=0;j<25;j++){        
+        var d = document.createElement("TD"); 
+        if(j<record[0].length){  
+            
+                if(j===0 && record[i][j]!== ""){
+                    d.innerHTML='<div contenteditable="false" >'+z+'</div>';  
+                    d.style.background= "burlywood";
+                }
+                else{
+                    d.innerHTML = record[z-1][j];
+                    d.style.background= "#eee";
+                }          
+                    r.appendChild(d);
+                    table.appendChild(r);            
+               }else{
+                   d.style.background= "#eee";
+                   r.appendChild(d);
+                   table.appendChild(r); 
+               }         
+       }
+       
+       z++;
+   }  
+        
+ }
+ 
+    window.addEventListener('scroll', function() {
+     if ( table.clientHeight === table.scrollHeight ) {
+         
+         console.log(table.scrollTop);
+         console.log(table.clientHeight);
+         console.log(table.scrollHeight);
+        /* for(i=0,k=100;i<199;i++,k++)
+             temp[i]=temp[k];
+         for(i=200,k=m*300;i<299;i++,k++)
+              temp[i]=record[k];
+          m++;*/
+            loadMore(m);          
+     }
+});
+loadMore(m);   
+}
+ 
