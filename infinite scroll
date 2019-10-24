@@ -25,15 +25,9 @@ function displayContents(contents) {
            
               table.appendChild(x);
 }
- var z=1,m=1,count;
- /*var temp = [];
- var m=1,count=1;
+ var z=1;
  
- for(k=100,i=0;k<299;k++,i++){
-     temp[k]=record[i];
- }*/
- 
- function loadMore(m){
+ function loadMore(){
         
  for(i=0; i<100 && z<record.length ; i++){
      var r = document.createElement("TR"); 
@@ -69,14 +63,10 @@ function displayContents(contents) {
          console.log(table.scrollTop);
          console.log(table.clientHeight);
          console.log(table.scrollHeight);
-        /* for(i=0,k=100;i<199;i++,k++)
-             temp[i]=temp[k];
-         for(i=200,k=m*300;i<299;i++,k++)
-              temp[i]=record[k];
-          m++;*/
-            loadMore(m);          
+        
+            loadMore();          
      }
 });
-loadMore(m);   
+loadMore();   
 }
  
